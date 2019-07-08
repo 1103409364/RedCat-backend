@@ -86,7 +86,7 @@ router.post('/login', (req, res) => {
                             avatar: user.avatar
                         }
                         jwt.sign(payload, 'secret', { //secret 私密
-                            expiresIn: 3600
+                            expiresIn: 3600 //过期时间
                         }, (err, token) => {
                             if (err) console.error('There is some error in token', err);
                             else {
