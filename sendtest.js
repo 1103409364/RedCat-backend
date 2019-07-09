@@ -3,7 +3,7 @@ var send = require('./validation/email.js');
 
 var user = {
     email: '1103409364@qq.com',
-    code: 100
+    code: 100 //验证码
 }
 // 创建一个邮件对象
 var mail = {
