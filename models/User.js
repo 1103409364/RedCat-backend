@@ -15,12 +15,24 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    avatar: {
+    avatar: { //头像地址
         type: String
     },
-    date: {
+    date: { //注册日期
         type: Date,
-        default: Date.now
+        default: Date.now()
+    },
+    code: { //激活码,用来邮件激活账号,随机生成一个
+        type: Number,
+        default: parseInt(Math.random() * 10000)
+    },
+    indate: { //激活码过期时间,默认 30 分钟
+        type: Number,
+        default: Date.now() + 30 * 60 * 1000
+    },
+    islive: { //Email 是否已激活
+        type: Boolean,
+        default: false
     }
 });
 
