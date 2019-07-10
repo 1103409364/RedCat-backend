@@ -10,39 +10,39 @@ module.exports = function validateRegisterInput(data) {
     data.password_confirm = !isEmpty(data.password_confirm) ? data.password_confirm : '';
 
     if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-        errors.name = 'Account must be between 2 to 30 chars';
+        errors.name = '用户名必须介于2到30个字符之间';
     }
 
     if (Validator.isEmpty(data.name)) {
-        errors.name = 'Account field is required';
+        errors.name = '用户名必填';
     }
 
     if (!Validator.isEmail(data.email)) {
-        errors.email = 'Email is invalid';
+        errors.email = '邮箱无效';
     }
 
     if (Validator.isEmpty(data.email)) {
-        errors.email = 'Email is required';
+        errors.email = '邮箱必填';
     }
 
     if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-        errors.password = 'Password must have 6 chars';
+        errors.password = '密码必须有6个字符';
     }
 
     if (Validator.isEmpty(data.password)) {
-        errors.password = 'Password is required';
+        errors.password = '密码必填';
     }
 
     if (!Validator.isLength(data.password_confirm, { min: 6, max: 30 })) {
-        errors.password_confirm = 'Password must have 6 chars';
+        errors.password_confirm = '密码必须有6个字符';
     }
     // 判断两次输入的密码是否相同
     if (!Validator.equals(data.password, data.password_confirm)) {
-        errors.password_confirm = 'Password and Confirm Password must match';
+        errors.password_confirm = '密码和确认密码不一致';
     }
 
     if (Validator.isEmpty(data.password_confirm)) {
-        errors.password_confirm = 'Password is required';
+        errors.password_confirm = '密码必填';
     }
 
     return {

@@ -12,12 +12,13 @@ const User = require('../models/User');
 // 路由里的接口要通过 /api/users/'接口' 来访问
 
 router.post('/register', function (req, res) {
+    // 查表单内容
     const { errors, isValid } = validateRegisterInput(req.body);
-    // 检查输入是否有效
+
     if (!isValid) {
         return res.status(400).json(errors);
     }
-    // 根据 email 在数据库中查找用户,看看是否已经存在
+    // 先检查 Email 和 name 是否已经被占用
     User.findOne({
         email: req.body.email
     }).then(user => {
@@ -25,37 +26,46 @@ router.post('/register', function (req, res) {
             return res.status(400).json({
                 email: 'Email 已被注册'
             });
-        }
-        else {
-            // gravatar 用于提供在全球范围内使用的头像服务.根据 email 查找头像,如果不存在,生成默认头像
-            const avatar = gravatar.url(req.body.email, {
-                s: '200',
-                r: 'pg',
-                d: 'mm'
-            });
-            const newUser = new User({
-                name: req.body.name,
-                email: req.body.email,
-                password: req.body.password,
-                avatar
-            });
-            // 对密码进行加密
-            bcrypt.genSalt(10, (err, salt) => {
-                if (err) console.error('There was an error', err);
-                else {
-                    bcrypt.hash(newUser.password, salt, (err, hash) => {
+        } else {
+            User.findOne({
+                name: req.body.name
+            }).then(user => {
+                if (user) {
+                    return res.status(400).json({
+                        name: '用户名已被占用'
+                    });
+                } else {
+                    // gravatar 用于提供在全球范围内使用的头像服务.根据 email 查找头像,如果不存在,生成默认头像
+                    const avatar = gravatar.url(req.body.email, {
+                        s: '200',
+                        r: 'pg',
+                        d: 'mm'
+                    });
+                    const newUser = new User({
+                        name: req.body.name,
+                        email: req.body.email,
+                        password: req.body.password,
+                        avatar
+                    });
+                    // 对密码进行加密
+                    bcrypt.genSalt(10, (err, salt) => {
                         if (err) console.error('There was an error', err);
                         else {
-                            newUser.password = hash;
-                            newUser
-                                .save()
-                                .then(user => {
-                                    res.json(user)
-                                });
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                if (err) console.error('There was an error', err);
+                                else {
+                                    newUser.password = hash;
+                                    newUser
+                                        .save()
+                                        .then(user => {
+                                            res.json(user)
+                                        });
+                                }
+                            });
                         }
                     });
                 }
-            });
+            })
         }
     });
 });
@@ -67,13 +77,14 @@ router.post('/login', (req, res) => {
         return res.status(400).json(errors);
     }
 
-    const email = req.body.email;
+    // 账号可能是邮箱或者用户名
+    const account = req.body.account;
     const password = req.body.password;
-    // 根据 email 在数据库中查找用户
-    User.findOne({ email })
+    // 根据 Email 或 name 查找用户
+    User.findOne({ $or: [{ email: account }, { name: account }] })
         .then(user => {
             if (!user) {
-                errors.email = '用户不存在';
+                errors.account = '用户不存在';
                 return res.status(404).json(errors);
             }
             // 和数据库中保存的密文密码进行比对,密码正确生成 token 发给前端.前端自行储存登陆相关信息,服务器不存
@@ -108,6 +119,7 @@ router.post('/login', (req, res) => {
                 });
         });
 });
+
 // 如果用户已登录，并且拥有JWT令牌，则可以访问此路由，否则他将重定向回登录，因为此路由受保护。
 router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
     return res.json({
@@ -133,7 +145,7 @@ router.get('/confirmation', passport.authenticate('jwt', { session: false }), (r
         // 发件人
         from: 'rr-blog <q1103409364@126.com>',
         // 主题
-        subject: '激活邮件',
+        subject: '账号激活',
         // 收件人
         to: user.email,
         // 邮件内容，HTML格式
@@ -174,7 +186,7 @@ router.get('/checkCode', function (req, res) {
                     if (err) {
                         res.send('<p>服务器错误</p>');
                         return;
-                    } 
+                    }
                     res.send('<p>激活成功，请重新<a href="http://localhost:3000/login">登陆</a></p>');
                 });
             } else {
