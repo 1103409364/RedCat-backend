@@ -2375,6 +2375,11 @@ widest-line@^2.0.0:
   dependencies:
     string-width "^2.1.1"
 
+wonderful-bing-wallpaper@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.npm.taobao.org/wonderful-bing-wallpaper/download/wonderful-bing-wallpaper-0.2.1.tgz#55e8ba2638ad5851a058ea1b8cb9b6da52fcd580"
+  integrity sha1-Vei6JjitWFGgWOobjLm22lL81YA=
+
 wrap-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/wrap-ansi/download/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"

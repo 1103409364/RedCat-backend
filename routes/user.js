@@ -11,7 +11,7 @@ const User = require('../models/User');
 
 // 路由里的接口要通过 /api/users/'接口' 来访问
 
-router.post('/register', function (req, res) {
+router.post('/register', (req, res) => {
     // 查表单内容
     const { errors, isValid } = validateRegisterInput(req.body);
 
@@ -121,6 +121,7 @@ router.post('/login', (req, res) => {
 });
 
 // 如果用户已登录，并且拥有JWT令牌，则可以访问此路由，否则他将重定向回登录，因为此路由受保护。
+// 使用passport-jwt验证 token,通过验证就调用回调函数
 router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
     return res.json({
         id: req.user.id,

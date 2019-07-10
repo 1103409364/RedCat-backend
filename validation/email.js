@@ -1,9 +1,9 @@
 //email.js
 // 引入 nodemailer
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 // 创建一个SMTP客户端配置
-var config = {
+const config = {
     host: 'smtp.126.com',
     port: 25,
     auth: {
@@ -13,7 +13,7 @@ var config = {
 };
 
 // 创建一个SMTP客户端对象
-var transporter = nodemailer.createTransport(config);
+const transporter = nodemailer.createTransport(config);
 
 // 发送邮件
 module.exports = function (mail) {

@@ -1,5 +1,5 @@
 // 测试能否发送邮件,直接 node 命令运行
-var send = require('./validation/email.js');
+var send = require('./email.js');
 
 var user = {
     email: '1103409364@qq.com',

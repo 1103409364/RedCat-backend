@@ -46,9 +46,7 @@ const UserSchema = new Schema({
 //     us.save();
 // }
 
-const User = mongoose.model('users', UserSchema);
-
-// 查重
+const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
 
