@@ -1,4 +1,3 @@
-const Home = require('../models/Home');
 const Article = require('../models/Article');
 
 module.exports = (req, res) => {
