@@ -23,7 +23,7 @@ const wbw = new WonderfulBingWallpaper(options)
 wbw.setOptions(options)
 
 // 获取壁纸
-module.exports = function (req, res) {
+module.exports = (req, res) => {
     wbw.getWallpapers(params).then(wallpaperJSON => {
         // console.log('got wallpaperJSON data', wallpaperJSON)
         // console.log('got humanizeWallpapers data - Array', wbw.humanizeWallpapers(wallpaperJSON))
