@@ -3,9 +3,10 @@ const ExtractJWT = require('passport-jwt').ExtractJwt;
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const opts = {};
+const config = require('../config/secretKey.js');
 
 opts.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = 'secret'; //密钥
+opts.secretOrKey = config.secretKey; //密钥
 
 module.exports = passport => {
     passport.use(new JWTStrategy(opts, (jwt_payload, done) => {

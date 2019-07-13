@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
-
+const config = require('../config/secretKey.js');
 const User = require('../models/User');
 
 // 路由里的接口要通过 /api/users/'接口' 来访问
@@ -98,9 +98,9 @@ router.post('/login', (req, res) => {
                             avatar: user.avatar,
                             islive: user.islive
                         }
-                        //默认使用 HS256 加密算法.第二个参数是密钥 'secret' ,可以自己设置一个字符串.RSA 算法中才会涉及到公钥/私钥对的概念
+                        //默认使用 HS256 加密算法.第二个参数是密钥,可以自己设置一个字符串. RSA 算法中才会涉及到公钥/私钥对的概念
                         // 签名的 header 部分由模块自动设置?
-                        jwt.sign(payload, 'secret', {
+                        jwt.sign(payload, config.secretKey, {
                             expiresIn: 36000  //过期时间，单位秒
                         }, (err, token) => {
                             if (err) console.error('There is some error in token', err);
@@ -119,6 +119,27 @@ router.post('/login', (req, res) => {
                 });
         });
 });
+
+// router.post('/refresh', passport.authenticate('jwt', { session: false }), (req, res) => {
+//     const payload = {
+//         id: req.user._id,
+//         name: req.user.name,
+//         avatar: req.user.avatar,
+//         islive: req.user.islive
+//     };
+//     console.log(req.user)
+//     jwt.sign(payload, config.secretKey, {
+//         expiresIn: 10  //过期时间，单位秒
+//     }, (err, token) => {
+//         if (err) console.error('There is some error in token', err);
+//         else {
+//             res.json({
+//                 success: true,
+//                 token: `Bearer ${token}`
+//             });
+//         }
+//     });
+// });
 
 // 如果用户已登录，并且拥有JWT令牌，则可以访问此路由，因为此路由受保护。未登陆返回 Unauthorized
 // 使用passport-jwt验证 token,通过验证就调用回调函数
