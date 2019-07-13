@@ -10,6 +10,7 @@ module.exports = (req, res) => {
     Article.deleteOne({ _id })
         .then(result => {
             data.success = true;
+            data.deletedCount = result.deletedCount;
             res.json(data);
             console.log(result)
         })
