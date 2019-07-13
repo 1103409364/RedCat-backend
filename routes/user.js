@@ -101,7 +101,7 @@ router.post('/login', (req, res) => {
                         //默认使用 HS256 加密算法.第二个参数是密钥 'secret' ,可以自己设置一个字符串.RSA 算法中才会涉及到公钥/私钥对的概念
                         // 签名的 header 部分由模块自动设置?
                         jwt.sign(payload, 'secret', {
-                            expiresIn: 3600               //过期时间
+                            expiresIn: 36000  //过期时间，单位秒
                         }, (err, token) => {
                             if (err) console.error('There is some error in token', err);
                             else {

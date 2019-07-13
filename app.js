@@ -4,6 +4,7 @@ const passport = require('passport');
 const user = require('./routes/user'); 
 const home = require('./routes/home'); 
 const write = require('./routes/write'); 
+const detail = require('./routes/detail'); 
 const app = express();
 const connect = require('./config/mongoose');
 
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 app.use('/api/users', user);
 app.use('/api/home', home);
 app.use('/api/write', write);
+app.use('/api/detail', detail);
 
 // 注册账号
 // app.post('/register', userCtrl.doAddUser);
