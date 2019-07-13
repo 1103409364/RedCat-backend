@@ -120,9 +120,10 @@ router.post('/login', (req, res) => {
         });
 });
 
-// 如果用户已登录，并且拥有JWT令牌，则可以访问此路由，否则他将重定向回登录，因为此路由受保护。
+// 如果用户已登录，并且拥有JWT令牌，则可以访问此路由，因为此路由受保护。未登陆返回 Unauthorized
 // 使用passport-jwt验证 token,通过验证就调用回调函数
 router.get('/me', passport.authenticate('jwt', { session: false }), (req, res) => {
+    // passport 解析 token 之后可以取得 token 中的用户信息 user
     return res.json({
         id: req.user.id,
         name: req.user.name,

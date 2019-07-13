@@ -27,9 +27,6 @@ app.use('/api/home', home);
 app.use('/api/write', write);
 app.use('/api/detail', detail);
 
-// 注册账号
-// app.post('/register', userCtrl.doAddUser);
-
 // 静态文件
 app.use(express.static('public'));
 
