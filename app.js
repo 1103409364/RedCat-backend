@@ -6,10 +6,9 @@ const home = require('./routes/home');
 const write = require('./routes/write'); 
 const detail = require('./routes/detail'); 
 const app = express();
-const connect = require('./config/mongoose');
+const mongoose = require('./config/mongoose');
+const db = mongoose.connection;
 
-// 链接数据库
-connect();
 // Passport项目是一个基于Nodejs的认证中间件。Passport目的只是为了“登陆认证”
 // 初始化 passport
 app.use(passport.initialize());
@@ -31,7 +30,5 @@ app.use('/api/detail', detail);
 app.use(express.static('public'));
 
 const PORT = parseInt(process.env.PORT, 10) || 8000;
-// // 服务器运行在 8000 端口
-app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}`);
-});
+// 服务器运行在 8000 端口
+app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));

@@ -18,9 +18,11 @@
 	"scripts": {
 		"start": "nodemon app"
 	},
-	"name": "rr-api",
+	"name": "RedCat-backend",
 	"version": "1.0.0",
 	"main": "app.js",
 	"license": "MIT",
-	"description": "rr-blog 项目的后台服务"
+	"description": "RedCat-backend 项目的后台",
+	"repository": "https://github.com/1103409364/RedCat-backend.git",
+	"author": "1103409364 <1103409364@qq.com>"
 }
