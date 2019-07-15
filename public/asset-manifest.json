@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/static/css/main.17de0606.chunk.css",
+    "main.js": "/static/js/main.fa752ff2.chunk.js",
+    "main.js.map": "/static/js/main.fa752ff2.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.e55480c3.js",
+    "runtime~main.js.map": "/static/js/runtime~main.e55480c3.js.map",
+    "static/css/2.ab3f4a0d.chunk.css": "/static/css/2.ab3f4a0d.chunk.css",
+    "static/js/2.71453416.chunk.js": "/static/js/2.71453416.chunk.js",
+    "static/js/2.71453416.chunk.js.map": "/static/js/2.71453416.chunk.js.map",
+    "static/js/3.fd6cc0b6.chunk.js": "/static/js/3.fd6cc0b6.chunk.js",
+    "static/js/3.fd6cc0b6.chunk.js.map": "/static/js/3.fd6cc0b6.chunk.js.map",
+    "static/css/4.c04bbb15.chunk.css": "/static/css/4.c04bbb15.chunk.css",
+    "static/js/4.e32d9f37.chunk.js": "/static/js/4.e32d9f37.chunk.js",
+    "static/js/4.e32d9f37.chunk.js.map": "/static/js/4.e32d9f37.chunk.js.map",
+    "static/css/5.1a5d735c.chunk.css": "/static/css/5.1a5d735c.chunk.css",
+    "static/js/5.a2ea5f79.chunk.js": "/static/js/5.a2ea5f79.chunk.js",
+    "static/js/5.a2ea5f79.chunk.js.map": "/static/js/5.a2ea5f79.chunk.js.map",
+    "static/js/6.bfd1c42f.chunk.js": "/static/js/6.bfd1c42f.chunk.js",
+    "static/js/6.bfd1c42f.chunk.js.map": "/static/js/6.bfd1c42f.chunk.js.map",
+    "static/js/7.ca08a015.chunk.js": "/static/js/7.ca08a015.chunk.js",
+    "static/js/7.ca08a015.chunk.js.map": "/static/js/7.ca08a015.chunk.js.map",
+    "static/js/8.4a93bb49.chunk.js": "/static/js/8.4a93bb49.chunk.js",
+    "static/js/8.4a93bb49.chunk.js.map": "/static/js/8.4a93bb49.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.17f1b17961082ec502aa8d337733e78b.js": "/precache-manifest.17f1b17961082ec502aa8d337733e78b.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ab3f4a0d.chunk.css.map": "/static/css/2.ab3f4a0d.chunk.css.map",
+    "static/css/4.c04bbb15.chunk.css.map": "/static/css/4.c04bbb15.chunk.css.map",
+    "static/css/5.1a5d735c.chunk.css.map": "/static/css/5.1a5d735c.chunk.css.map",
+    "static/css/main.17de0606.chunk.css.map": "/static/css/main.17de0606.chunk.css.map"
+  }
+}
