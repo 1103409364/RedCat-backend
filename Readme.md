@@ -1,10 +1,10 @@
 ### 简要介绍
-* 项目：RedCat 项目的后台
+* 项目：RedCat-backend
 * 类型：博客
 * 主要技术： Node.js、Express、MongoDB、jwt authentication
 * Node.js 版本：v10.15.3
 * MongoDB 版本：v4.0.8
-
+* 项目前端：[链接](https://github.com/1103409364/RedCat)
 ### 提供接口
 * 注册
 * 登录
