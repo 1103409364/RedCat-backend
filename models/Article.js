@@ -23,17 +23,17 @@ const ArticleSchema = new Schema({
         required: true
     },
     // 发布日期，保存时间戳，数字形式，在前端进行格式化
-    date: { 
+    date: {
         type: Number,
         default: Date.now()
     },
     // 修改日期
-    updateDate: { 
+    updateDate: {
         type: Number,
         default: Date.now()
     },
     // 作者
-    author: { 
+    author: {
         type: String,
     }
 });
@@ -49,13 +49,13 @@ ArticleSchema.statics.saveToDB = (article) => {
     });
     // 返回一个 promise 对象
     return at.save();
-}
+};
 
 ArticleSchema.statics.updateArticle = (newArticle) => {
-    this.find({'_id': newArticle})
+    this.find({ '_id': newArticle })
         .then(article => {
             // this.update
-        })
+        });
     // const at = new Article({
     //     'title': article.title,
     //     'html': article.html,
@@ -65,7 +65,7 @@ ArticleSchema.statics.updateArticle = (newArticle) => {
     // });
     // 返回一个 promise 对象
     // return at.save();
-}
+};
 
 const Article = mongoose.model('Article', ArticleSchema);
 

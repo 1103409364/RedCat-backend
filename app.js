@@ -1,10 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser'); //使用bodyparser 解析post请求
+const bodyParser = require('body-parser'); // 使用bodyparser 解析post请求
 const passport = require('passport');
-const user = require('./routes/user'); 
-const home = require('./routes/home'); 
-const write = require('./routes/write'); 
-const detail = require('./routes/detail'); 
+const user = require('./routes/user');
+const home = require('./routes/home');
+const write = require('./routes/write');
+const detail = require('./routes/detail');
 const app = express();
 const mongoose = require('./config/mongoose');
 const db = mongoose.connection;
@@ -17,7 +17,7 @@ require('./config/passport')(passport);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json 
+// parse application/json
 app.use(bodyParser.json());
 
 // 使用路由,请求的时候加前缀,例如 http://localhost:8000/api/users/me

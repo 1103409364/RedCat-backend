@@ -49,23 +49,23 @@ router.post('/register', (req, res) => {
                     });
                     // 对密码进行加密
                     bcrypt.genSalt(10, (err, salt) => {
-                        if (err) console.error('There was an error', err);
+                        if (err) { console.error('There was an error', err)}
                         else {
                             bcrypt.hash(newUser.password, salt, (err, hash) => {
-                                if (err) console.error('There was an error', err);
+                                if (err) { console.error('There was an error', err)}
                                 else {
                                     newUser.password = hash;
                                     newUser
                                         .save()
                                         .then(user => {
-                                            res.json(user)
+                                            res.json(user);
                                         });
                                 }
                             });
                         }
                     });
                 }
-            })
+            });
         }
     });
 });
@@ -97,13 +97,13 @@ router.post('/login', (req, res) => {
                             name: user.name,
                             avatar: user.avatar,
                             islive: user.islive
-                        }
-                        //默认使用 HS256 加密算法.第二个参数是密钥,可以自己设置一个字符串. RSA 算法中才会涉及到公钥/私钥对的概念
+                        };
+                        // 默认使用 HS256 加密算法.第二个参数是密钥,可以自己设置一个字符串. RSA 算法中才会涉及到公钥/私钥对的概念
                         // 签名的 header 部分由模块自动设置?
                         jwt.sign(payload, config.secretKey, {
-                            expiresIn: 36000  //过期时间，单位秒
+                            expiresIn: 36000  // 过期时间，单位秒
                         }, (err, token) => {
-                            if (err) console.error('There is some error in token', err);
+                            if (err) { console.error('There is some error in token', err)}
                             else {
                                 res.json({
                                     success: true,
@@ -161,7 +161,7 @@ router.get('/confirmation', passport.authenticate('jwt', { session: false }), (r
         email: req.user.email,
         code: parseInt(Math.random() * 10000),
         indate: Date.now() + 30 * 60 * 1000
-    }
+    };
 
     // 创建一个邮件对象
     const mail = {
@@ -172,7 +172,7 @@ router.get('/confirmation', passport.authenticate('jwt', { session: false }), (r
         // 收件人
         to: user.email,
         // 邮件内容，HTML格式
-        //接收激活请求的链接, 激活端口根据当前服务器运行端口确定
+        // 接收激活请求的链接, 激活端口根据当前服务器运行端口确定
         text: '点击激活: http://localhost:8000/api/users/checkCode?email=' + user.email + '&code=' + user.code
     };
     // 更新数据库的 验证码, 过期时间
@@ -184,39 +184,37 @@ router.get('/confirmation', passport.authenticate('jwt', { session: false }), (r
             });
             return;
         }
-        send(mail); //测试注意必须要真实邮箱,假邮箱收不到邮件
+        send(mail); // 测试注意必须要真实邮箱,假邮箱收不到邮件
 
         res.json({
             success: true,
             mail
-        })
+        });
     });
 });
 
 
 // 邮件激活,点击验证接口
 router.get('/checkCode', function (req, res) {
-    var useremail = req.query.email;
-    var code = parseInt(req.query.code);
+    let useremail = req.query.email;
+    let code = parseInt(req.query.code);
     // console.log(useremail, code);
     User.findOne({
         email: useremail
-    }).then(
-        user => {
-            // console.log(user)
-            if (user.code === code && (user.indate - Date.now()) > 0) {
-                User.updateOne({ email: useremail }, { islive: true }, function (err) {
-                    if (err) {
-                        res.send('<p>服务器错误</p>');
-                        return;
-                    }
-                    res.send('<p>激活成功，请重新<a href="http://localhost:3000/login">登陆</a></p>');
-                });
-            } else {
-                res.send('<p>激活链接已失效,请重新发送激活邮件！</p>');
-            }
+    }).then(user => {
+        // console.log(user)
+        if (user.code === code && (user.indate - Date.now()) > 0) {
+            User.updateOne({ email: useremail }, { islive: true }, function (err) {
+                if (err) {
+                    res.send('<p>服务器错误</p>');
+                    return;
+                }
+                res.send('<p>激活成功，请重新<a href="http://localhost:3000/login">登陆</a></p>');
+            });
+        } else {
+            res.send('<p>激活链接已失效,请重新发送激活邮件！</p>');
         }
-    )
-})
+    });
+});
 
 module.exports = router;

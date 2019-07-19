@@ -48,5 +48,5 @@ module.exports = function validateRegisterInput(data) {
     return {
         errors,
         isValid: isEmpty(errors) // errors 对象为空的时候,输入的就是有效的
-    }
-}
+    };
+};

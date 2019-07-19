@@ -18,14 +18,14 @@ module.exports = (req, res) => {
                         data.success = true;
                         data.deletedCount = result.deletedCount;
                         res.json(data);
-                        console.log(result)
+                        console.log(result);
                     })
                     .catch(err => {
                         data.success = false;
                         data.err = err;
                         res.json(data);
                         console.log(err);
-                    })
+                    });
             } else {
                 data.success = false;
                 res.json(data);
@@ -36,6 +36,6 @@ module.exports = (req, res) => {
             data.err = err;
             res.json(data);
             console.log(err);
-        })
-}
+        });
+};
 

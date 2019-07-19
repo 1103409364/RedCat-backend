@@ -1,4 +1,4 @@
-//email.js
+// email.js
 // 引入 nodemailer
 const nodemailer = require('nodemailer');
 
@@ -7,8 +7,8 @@ const config = {
     host: 'smtp.126.com',
     port: 25,
     auth: {
-        user: 'q1103409364@126.com', //刚才注册的邮箱账号
-        pass: 'x123456'  //邮箱的授权码，不是注册时的密码
+        user: 'q1103409364@126.com', // 刚才注册的邮箱账号
+        pass: 'x123456'  // 邮箱的授权码，不是注册时的密码
     }
 };
 

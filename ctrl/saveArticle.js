@@ -46,11 +46,11 @@ module.exports = (req, res) => {
                     data.success = false;
                     data.err = err;
                     res.json(data);
-                })
+                });
         }
 
     } else {
         data.success = false;
         res.json(data);
     }
-}
+};
