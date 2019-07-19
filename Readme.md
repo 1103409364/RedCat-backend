@@ -14,7 +14,7 @@
 * 获取 bing 每日壁纸
 
 ### 运行方式
-下载安装  MongoDB，然后新建数据库文件夹，路径名称不限，例如：在 C盘根目录新建 mongoDB 文件夹
+下载安装  MongoDB，然后新建数据库文件夹，路径名称不限，例如：在 C 盘根目录新建 mongoDB 文件夹
 ```
 $ mongod --dbpath C:\mongoDB\
 $ yarn
